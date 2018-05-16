@@ -7,7 +7,7 @@ target/wasm32-unknown-unknown/debug/foo.wasm:
 clean:
 	cargo clean
 	rm -rf node_modules
-	rm foo_bg.wasm foo.d.ts foo.js
+	rm -f foo_bg.wasm foo.d.ts foo.js
 
 prepare:
 	cargo install -f wasm-bindgen-cli
