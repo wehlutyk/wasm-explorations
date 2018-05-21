@@ -9,11 +9,11 @@ clean:
 	rm -rf node_modules
 	rm -f foo_bg.wasm foo.d.ts foo.js
 
-prepare:
+env:
 	cargo install -f wasm-bindgen-cli
 	npm install
 
 serve:
 	npm run serve
 
-.PHONY: clean prepare serve
+.PHONY: clean env serve
