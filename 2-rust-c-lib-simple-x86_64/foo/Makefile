@@ -11,12 +11,13 @@ clean:
 	#rm -rf node_modules
 	#rm -f foo_bg.wasm foo.d.ts foo.js
 
-#env:
+blankslate: clean
+	rm -f Cargo.lock
+	#rm -f package-lock.json
+
+#env: blankslate
 #	cargo install -f wasm-bindgen-cli
 #	npm install
 
-#serve:
-#	npm run serve
-
-#.PHONY: clean env serve
-.PHONY: clean
+#.PHONY: clean env blankslate
+.PHONY: clean blankslate
