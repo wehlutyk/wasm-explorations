@@ -1,8 +1,8 @@
 #foo_bg.wasm foo.d.ts foo.js: target/wasm32-unknown-unknown/debug/foo.wasm
-#	wasm-bindgen target/wasm32-unknown-unknown/debug/foo.wasm --out-dir .
+	#wasm-bindgen target/wasm32-unknown-unknown/debug/foo.wasm --out-dir .
 
 #target/wasm32-unknown-unknown/debug/foo.wasm:
-#	cargo build --target=wasm32-unknown-unknown
+	#cargo build --target=wasm32-unknown-unknown
 target/debug/foo.wasm:
 	cargo build
 
@@ -15,9 +15,8 @@ blankslate: clean
 	rm -f Cargo.lock
 	#rm -f package-lock.json
 
-#env: blankslate
-#	cargo install -f wasm-bindgen-cli
-#	npm install
+env: blankslate
+	#cargo install -f wasm-bindgen-cli
+	#npm install
 
-#.PHONY: clean env blankslate
-.PHONY: clean blankslate
+.PHONY: clean env blankslate
