@@ -1,14 +1,4 @@
 [[package]]
-name = "cc"
-version = "1.0.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-
-[[package]]
 name = "foo"
 version = "0.1.0"
-dependencies = [
- "cc 1.0.15 (registry+https://github.com/rust-lang/crates.io-index)",
-]
 
-[metadata]
-"checksum cc 1.0.15 (registry+https://github.com/rust-lang/crates.io-index)" = "0ebb87d1116151416c0cf66a0e3fb6430cccd120fd6300794b4dfaa050ac40ba"

@@ -4,4 +4,4 @@ A Rust "hello world" which statically links to a C library compiled from source 
 
 Build: `make env; and make`
 
-Run: `cargo run`
+Run: `target/debug/foo`
