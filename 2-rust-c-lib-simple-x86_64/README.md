@@ -2,6 +2,6 @@
 
 A Rust "hello world" which statically links to a C library compiled from source as part of the build.
 
-Build: `make env; and make`
+Build: `make env && make`
 
 Run: `target/debug/foo`
