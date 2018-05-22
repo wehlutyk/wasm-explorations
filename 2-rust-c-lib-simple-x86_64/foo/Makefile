@@ -1,4 +1,4 @@
-export BAR_LIB_DIR = $(shell pwd)/libbar
+export BAR_LIB_DIR := $(PWD)/libbar
 
 #foo_bg.wasm foo.d.ts foo.js: target/wasm32-unknown-unknown/debug/foo.wasm
 	#wasm-bindgen target/wasm32-unknown-unknown/debug/foo.wasm --out-dir .
