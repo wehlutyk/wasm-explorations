@@ -6,11 +6,11 @@ target/wasm32-unknown-unknown/debug/foo.wasm:
 
 clean:
 	cargo clean
-	rm -rf node_modules
 	rm -f foo_bg.wasm foo.d.ts foo.js
 
 blankslate: clean
 	rm -f Cargo.lock
+	rm -rf node_modules
 	rm -f package-lock.json
 
 env: blankslate
