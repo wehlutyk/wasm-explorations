@@ -18,7 +18,7 @@ libbar/libbar.a: libbar/bar.o
 	  wasm-compiler-test \
 	  /clang/bin/llvm-ar rcsv libbar/libbar.a libbar/bar.o
 
-libbar/bar.o: libbar/bar.c docker
+libbar/bar.o: libbar/bar.c
 	 #--volume $(PWD)/target:/c/target \
 	 #--volume $HOME/.cargo:/cargo \
 	 #--volume (rustc +nightly --print sysroot):/rust:ro \
