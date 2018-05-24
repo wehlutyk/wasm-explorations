@@ -1,3 +1,5 @@
+DOCKER_IMAGE_VERSION := 0.1.0
+DOCKER_IMAGE := wehlutyk/wasm-compiler:$(DOCKER_IMAGE_VERSION)
 STEPS := $(sort $(wildcard */foo))
 STEPS_BUILD := $(foreach step,$(STEPS),$(step)/.BUILD)
 STEPS_CLEAN := $(foreach step,$(STEPS),$(step)/.CLEAN)
@@ -8,9 +10,10 @@ all: $(STEPS_BUILD)
 clean: $(STEPS_CLEAN)
 
 docker:
-	docker build --rm --tag wasm-compiler-test .
+	docker build --rm --tag $(DOCKER_IMAGE) .
+	docker push $(DOCKER_IMAGE)
 
-env: docker $(STEPS_ENV)
+env: $(STEPS_ENV)
 	-cargo install wasm-bindgen-cli
 
 update-wasm-bindgen:
@@ -25,4 +28,4 @@ $(STEPS_CLEAN):
 $(STEPS_ENV):
 	$(MAKE) -C $(@D) env
 
-.PHONY: all docker env update-wasm-bindgen $(STEPS_BUILD) $(STEPS_ENV)
+.PHONY: all docker env update-wasm-bindgen $(STEPS_BUILD) $(STEPS_CLEAN) $(STEPS_ENV)
