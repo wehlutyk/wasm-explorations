@@ -1,12 +1,10 @@
-language: rust
-rust:
-  - nightly
+language: node_js
+node_js:
+  - "8"
 
 addons:
   apt:
     update: true
-    packages:
-      - tar
 
 # Enable access to docker
 sudo: required
@@ -14,18 +12,11 @@ services:
   - docker
 
 before_install:
-  - echo $PATH
-  - dpkg-query -L tar
-  - which tar
-  # Install nodejs
-  - curl https://nodejs.org/dist/v8.11.2/node-v8.11.2-linux-x64.tar.xz | \
-      tar xJf -C $HOME/node --strip-components 1
-  - export PATH="$HOME/node/bin:$PATH"
-  - hash -r
-  # Update npm
-  - npm install npm@latest
-  - export PATH="$HOME/node_modules/.bin:$PATH"
-  - hash -r
+  # Install Rust nightly
+  - export CARGO_HOME="$HOME/cargo"
+  - export RUSTUP_HOME="$HOME/rustup"
+  - curl https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
+  - export PATH="$CARGO_HOME/bin:$PATH"
 install: make env
 script: make
 # TODO:
