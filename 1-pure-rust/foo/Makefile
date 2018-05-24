@@ -13,8 +13,7 @@ blankslate: clean
 	rm -rf node_modules
 	rm -f package-lock.json
 
-env: blankslate
-	cargo install -f wasm-bindgen-cli
+env:
 	npm install
 
 .PHONY: clean env blankslate
