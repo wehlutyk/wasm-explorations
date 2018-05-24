@@ -4,6 +4,7 @@ rust:
 
 addons:
   apt:
+    update: true
     packages:
       - tar
 
