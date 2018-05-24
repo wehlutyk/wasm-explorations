@@ -7,7 +7,10 @@ all: $(STEPS_BUILD)
 
 clean: $(STEPS_CLEAN)
 
-env: $(STEPS_ENV)
+docker:
+	docker build --rm --tag wasm-compiler-test .
+
+env: docker $(STEPS_ENV)
 	-cargo install wasm-bindgen-cli
 
 update-wasm-bindgen:
@@ -22,4 +25,4 @@ $(STEPS_CLEAN):
 $(STEPS_ENV):
 	$(MAKE) -C $(@D) env
 
-.PHONY: all env update-wasm-bindgen $(STEPS_BUILD) $(STEPS_ENV)
+.PHONY: all docker env update-wasm-bindgen $(STEPS_BUILD) $(STEPS_ENV)

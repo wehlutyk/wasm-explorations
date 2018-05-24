@@ -33,9 +33,6 @@ $(BAR_LIB_DIR)/bar.o: $(BAR_LIB_DIR)/bar.c
 	  wasm-compiler-test \
 	 /clang/bin/clang -c --target=wasm32-unknown-unknown-wasm -o $(BAR_LIB_DIR)/bar.o $(BAR_LIB_DIR)/bar.c
 
-docker:
-	docker build --rm --tag wasm-compiler-test .
-
 clean:
 	cargo clean
 	rm -f $(BAR_LIB_DIR)/bar.o $(BAR_LIB_DIR)/libbar.a
@@ -46,7 +43,7 @@ blankslate: clean
 	rm -rf node_modules
 	rm -f package-lock.json
 
-env: docker
+env:
 	npm install
 
-.PHONY: clean env blankslate docker
+.PHONY: clean env blankslate
