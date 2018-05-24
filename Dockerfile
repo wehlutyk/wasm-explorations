@@ -44,3 +44,5 @@ RUN make -j$(nproc) install
 
 WORKDIR /
 ENV PATH /rust/bin:$PATH
+
+ENV BAR_LIB_DIR /c/libbar
