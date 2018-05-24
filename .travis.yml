@@ -2,11 +2,11 @@ language: rust
 rust:
   - nightly
 
-#addons:
-  #apt:
-    #update: true
-    #packages:
-      #- tar
+addons:
+  apt:
+    update: true
+    packages:
+      - tar
 
 # Enable access to docker
 sudo: required
@@ -14,8 +14,9 @@ services:
   - docker
 
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y tar
+  - echo $PATH
+  - dpkg-query -L tar
+  - which tar
   # Install nodejs
   - curl https://nodejs.org/dist/v8.11.2/node-v8.11.2-linux-x64.tar.xz | \
       tar xJf -C $HOME/node --strip-components 1
