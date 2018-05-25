@@ -4,6 +4,7 @@ STEPS := $(sort $(wildcard */foo))
 STEPS_BUILD := $(foreach step,$(STEPS),$(step)/.BUILD)
 STEPS_CLEAN := $(foreach step,$(STEPS),$(step)/.CLEAN)
 STEPS_ENV := $(foreach step,$(STEPS),$(step)/.ENV)
+STEPS_TEST := $(foreach step,$(STEPS),$(step)/.TEST)
 
 all: $(STEPS_BUILD)
 
@@ -19,6 +20,8 @@ env: $(STEPS_ENV)
 update-wasm-bindgen:
 	cargo install -f wasm-bindgen-cli
 
+test: $(STEPS_TEST)
+
 $(STEPS_BUILD):
 	$(MAKE) -C $(@D)
 
@@ -28,4 +31,7 @@ $(STEPS_CLEAN):
 $(STEPS_ENV):
 	$(MAKE) -C $(@D) env
 
-.PHONY: all docker env update-wasm-bindgen $(STEPS_BUILD) $(STEPS_CLEAN) $(STEPS_ENV)
+$(STEPS_TEST):
+	$(MAKE) -C $(@D) test
+
+.PHONY: all clean docker env update-wasm-bindgen test $(STEPS_BUILD) $(STEPS_CLEAN) $(STEPS_ENV) $(STEPS_TEST)

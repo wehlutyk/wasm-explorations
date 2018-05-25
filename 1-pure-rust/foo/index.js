@@ -1,4 +1,4 @@
-const js = import("./foo");
+const js = import("./dist-browser/foo");
 
 js.then(js => {
   js.greet("World!");

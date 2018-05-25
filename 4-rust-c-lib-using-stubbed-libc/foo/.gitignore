@@ -1,3 +1,2 @@
-foo.d.ts
-foo.js
-foo_bg.wasm
+dist-browser/
+dist-nodejs/

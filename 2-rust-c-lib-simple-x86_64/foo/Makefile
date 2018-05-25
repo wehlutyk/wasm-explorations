@@ -27,4 +27,8 @@ blankslate: clean
 env:
 	#npm install
 
-.PHONY: clean env blankslate
+test: target/debug/foo
+	target/debug/foo | grep "Hello, World!!"
+	target/debug/foo | grep "4 + 5 = 9"
+
+.PHONY: clean env blankslate test
