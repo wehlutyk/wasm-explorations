@@ -7,7 +7,8 @@ RUN apt-get install -y \
   cmake \
   curl \
   xz-utils \
-  python
+  python \
+  git
 
 WORKDIR /llvm/build
 RUN curl http://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz | \
@@ -23,18 +24,9 @@ RUN cmake .. \
 RUN make -j $(nproc)
 RUN make install
 
-# Install Rust as we'll use it later. We'll also be cribbing `lld` out of Rust's
-# sysroot to use when compiling libsodium
-ENV CARGO_HOME /cargo
-ENV RUSTUP_HOME /rustup
-RUN curl https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
-ENV PATH $PATH:/cargo/bin:/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin
-RUN rustup target add wasm32-unknown-unknown
-
 ENV CC /clang/bin/clang
 
 WORKDIR /
-RUN apt-get install -y git
 RUN git clone https://github.com/jfbastien/musl
 WORKDIR /musl
 RUN git reset --hard d312ecae
@@ -43,7 +35,7 @@ RUN CFLAGS="$CFLAGS -Wno-error=pointer-sign" ./configure --prefix=/musl-sysroot 
 RUN make -j$(nproc) install
 
 WORKDIR /
+ENV CARGO_HOME /cargo
 ENV PATH /rust/bin:$PATH
-
 ENV BAR_LIB_DIR /c/libbar
 ENV C_LIB_DIR /musl-sysroot/lib
