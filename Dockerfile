@@ -46,3 +46,4 @@ WORKDIR /
 ENV PATH /rust/bin:$PATH
 
 ENV BAR_LIB_DIR /c/libbar
+ENV C_LIB_DIR /musl-sysroot/lib
