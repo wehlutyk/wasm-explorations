@@ -11,7 +11,7 @@ export BAR_LIB_DIR := libbar
 export C_LIB_DIR := /musl-sysroot/lib
 DOCKER_RUN = docker run \
   --user $(shell id -u):$(shell id -g) \
-  --volume $(CURDIR):/c \
+  --volume $(CURDIR):/c:ro \
   --volume $(CURDIR)/$(BAR_LIB_DIR):/c/$(BAR_LIB_DIR) \
   --volume $(CURDIR)/target:/c/target \
   --volume $(HOME)/.cargo:/cargo \
