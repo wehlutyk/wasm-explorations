@@ -18,9 +18,7 @@ before_install:
   - curl https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
   - export PATH="$CARGO_HOME/bin:$PATH"
   - rustup target add wasm32-unknown-unknown
-install: make env
-script: make
-# TODO:
-# before_install: make env
-# install: make
-# script: make test
+  # Prepare environment
+  - make env
+install: make
+script: make test
