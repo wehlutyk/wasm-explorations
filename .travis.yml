@@ -13,16 +13,12 @@ services:
 
 before_install:
   # Install Rust nightly
-  - export CARGO_HOME="$HOME/cargo"
+  - export CARGO_HOME="$HOME/.cargo"
   - export RUSTUP_HOME="$HOME/rustup"
   - curl https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
   - export PATH="$CARGO_HOME/bin:$PATH"
   - rustup target add wasm32-unknown-unknown
   # Prepare environment
   - make env
-  # Debug
-  - ls -lah $HOME
-  - docker run --rm --tty --interactive wehlutyk/wasm-compiler:0.2.0 ls -lah /
-  - docker run --rm --tty --interactive wehlutyk/wasm-compiler:0.2.0 ls -lah /cargo
 install: make
 script: make test
