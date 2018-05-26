@@ -20,5 +20,9 @@ before_install:
   - rustup target add wasm32-unknown-unknown
   # Prepare environment
   - make env
+  # Debug
+  - ls -lah $HOME
+  - docker run --rm --tag wehlutyk/wasm-compiler:0.2.0 ls -lah /
+  - docker run --rm --tag wehlutyk/wasm-compiler:0.2.0 ls -lah /cargo
 install: make
 script: make test
