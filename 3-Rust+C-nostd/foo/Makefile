@@ -5,7 +5,7 @@ DIST_NODEJS := dist-nodejs
 OUTFILES_NODEJS := $(OUTFILES_BROWSER) foo_bg.js
 OUTPATHS_NODEJS := $(foreach file,$(OUTFILES_NODEJS),$(DIST_NODEJS)/$(file))
 
-DOCKER_IMAGE_VERSION := 0.2.0
+DOCKER_IMAGE_VERSION := 0.3.0
 DOCKER_IMAGE := wehlutyk/wasm-compiler:$(DOCKER_IMAGE_VERSION)
 export BAR_LIB_DIR := libbar
 DOCKER_RUN = docker run \

@@ -1,4 +1,4 @@
-DOCKER_IMAGE_VERSION := 0.2.0
+DOCKER_IMAGE_VERSION := 0.3.0
 DOCKER_IMAGE := wehlutyk/wasm-compiler:$(DOCKER_IMAGE_VERSION)
 STEPS := $(sort $(wildcard */foo))
 STEPS_BUILD := $(foreach step,$(STEPS),$(step)/.BUILD)

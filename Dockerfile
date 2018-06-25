@@ -16,6 +16,9 @@ RUN curl http://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz | \
 RUN mkdir /llvm/tools/clang
 RUN curl http://releases.llvm.org/6.0.0/cfe-6.0.0.src.tar.xz | \
   tar xJf - -C /llvm/tools/clang --strip-components 1
+RUN mkdir /llvm/tools/lld
+RUN curl https://releases.llvm.org/6.0.0/lld-6.0.0.src.tar.xz | \
+  tar xJf - -C /llvm/tools/lld --strip-components 1
 RUN cmake .. \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=/clang \
@@ -25,6 +28,9 @@ RUN make -j $(nproc)
 RUN make install
 
 ENV CC /clang/bin/clang
+ENV AR /clang/bin/llvm-ar
+ENV LD /clang/bin/ld.lld
+ENV LLVM_CONFIG /clang/bin/llvm-config
 
 WORKDIR /
 RUN git clone https://github.com/jfbastien/musl
@@ -34,8 +40,4 @@ ENV CFLAGS -O3 --target=wasm32-unknown-unknown-wasm -nostdlib -Wl,--no-entry
 RUN CFLAGS="$CFLAGS -Wno-error=pointer-sign" ./configure --prefix=/musl-sysroot wasm32
 RUN make -j$(nproc) install
 
-WORKDIR /
-ENV CARGO_HOME /cargo
-ENV PATH /rust/bin:$PATH
-ENV BAR_LIB_DIR /c/libbar
-ENV C_LIB_DIR /musl-sysroot/lib
+ENV CFLAGS -O3 --target=wasm32-unknown-unknown-wasm -nostdlib -Wl,--no-entry --sysroot=/musl-sysroot

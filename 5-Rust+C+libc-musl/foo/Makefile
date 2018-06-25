@@ -5,7 +5,7 @@ DIST_NODEJS := dist-nodejs
 OUTFILES_NODEJS := $(OUTFILES_BROWSER) foo_bg.js
 OUTPATHS_NODEJS := $(foreach file,$(OUTFILES_NODEJS),$(DIST_NODEJS)/$(file))
 
-DOCKER_IMAGE_VERSION := 0.2.0
+DOCKER_IMAGE_VERSION := 0.3.0
 DOCKER_IMAGE := wehlutyk/wasm-compiler:$(DOCKER_IMAGE_VERSION)
 export BAR_LIB_DIR := libbar
 export C_LIB_DIR := /musl-sysroot/lib
@@ -16,6 +16,10 @@ DOCKER_RUN = docker run \
   --volume $(CURDIR)/target:/c/target \
   --volume $(HOME)/.cargo:/cargo \
   --volume $(shell rustc +nightly --print sysroot):/rust:ro \
+  --env CARGO_HOME=/cargo \
+  --env PATH=/rust/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+  --env BAR_LIB_DIR=/c/$(BAR_LIB_DIR) \
+  --env C_LIB_DIR=$(C_LIB_DIR) \
   --workdir /c \
   --interactive \
   --tty \
