@@ -11,14 +11,6 @@ version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
-name = "foo"
-version = "0.1.0"
-dependencies = [
- "libc-stub 0.1.0",
- "wasm-bindgen 0.2.48 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
 name = "fuchsia-cprng"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
