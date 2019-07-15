@@ -1,5 +1,3 @@
-#![feature(proc_macro, wasm_custom_section, wasm_import_module)]
-
 extern crate wasm_bindgen;
 extern crate statrs;
 
@@ -27,7 +25,6 @@ extern {
 
 // ... which we define ourselves
 #[no_mangle]
-#[allow(private_no_mangle_fns)]
 extern fn erff(a: c_float) -> c_float {
     erf::erf(a as f64) as c_float
 }
