@@ -38,7 +38,7 @@ $(BAR_LIB_DIR)/libbar.a: $(BAR_LIB_DIR)/bar.o
 	$(DOCKER_RUN) /clang/bin/llvm-ar rcsv $(BAR_LIB_DIR)/libbar.a $(BAR_LIB_DIR)/bar.o
 
 $(BAR_LIB_DIR)/bar.o: $(BAR_LIB_DIR)/bar.c
-	$(DOCKER_RUN) /clang/bin/clang -c --target=wasm32-unknown-unknown-wasm --sysroot=/musl-sysroot -o $(BAR_LIB_DIR)/bar.o $(BAR_LIB_DIR)/bar.c
+	$(DOCKER_RUN) /clang/bin/clang -c --target=wasm32-unknown-unknown-wasm -emit-llvm --sysroot=/musl-sysroot -o $(BAR_LIB_DIR)/bar.o $(BAR_LIB_DIR)/bar.c
 
 clean:
 	cargo clean
